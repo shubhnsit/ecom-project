@@ -23,6 +23,11 @@ public class OrderController {
         return ResponseEntity.ok().body(objectMapper.writeValueAsString(service.getOrdersByUserName(username)));
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<String> getOrders(@RequestHeader("x-username") String username, @PathVariable Long id)) throws JsonProcessingException {
+        return ResponseEntity.ok().body(objectMapper.writeValueAsString(service.getOrdersById(id)));
+    }
+
     @PostMapping
     public ResponseEntity<String> createOrder(@RequestBody Order orderRequest,
                                               @RequestHeader("x-username") String username) throws JsonProcessingException {

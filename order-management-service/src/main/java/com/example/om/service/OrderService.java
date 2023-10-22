@@ -88,4 +88,8 @@ public class OrderService {
         return orderRepository.findAll().stream().filter(order -> order.getCreatedBy().equalsIgnoreCase(username))
                 .collect(Collectors.toList());
     }
+
+    public Order getOrdersById(Long id) {
+        return orderRepository.getReferenceById(id);
+    }
 }
