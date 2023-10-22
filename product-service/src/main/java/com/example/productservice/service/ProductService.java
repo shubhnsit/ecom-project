@@ -33,10 +33,6 @@ public class ProductService {
         return productRepository.getReferenceById(id);
     }
 
-    public List<Product> getAllProducts(final String username) {
-        return productRepository.findAll();
-    }
-
     public List<Product> getAllProductsByUserNameAndProductName(final String username,
                                                                 final String name) {
         List<Product> products = productRepository.findAll();

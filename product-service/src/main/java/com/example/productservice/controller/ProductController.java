@@ -23,16 +23,16 @@ public class ProductController {
     private ObjectMapper objectMapper;
 
     @GetMapping
-    public ResponseEntity<String> getProducts(@RequestHeader("x-username") String username) throws JsonProcessingException {
-        List<Product> products = productService.getAllProducts(username);
+    // We can extend this api by adding pagination
+    public ResponseEntity<String> getProducts() throws JsonProcessingException {
+        List<Product> products = productService.getAllProducts();
         return ResponseEntity.ok().body(objectMapper.writeValueAsString(products));
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<String> getProductByName(@RequestHeader("x-username") String username,
-                                                   @PathVariable String name) throws JsonProcessingException {
-        List<Product> products = productService.getAllProductsByUserNameAndProductName(username, name);
-        return ResponseEntity.ok().body(objectMapper.writeValueAsString(products));
+    @GetMapping("/{id}")
+    public ResponseEntity<String> getProductById(@PathVariable Long id) throws JsonProcessingException {
+        Product product = productService.getProductById(id);
+        return ResponseEntity.ok().body(objectMapper.writeValueAsString(product));
     }
 
     @PostMapping
